@@ -135,5 +135,7 @@ grant.vercel = (options) => {
   return options ? handler(options) : handler
 }
 
+grant.Grant = require('./lib/grant')
+
 grant.default = grant
 module.exports = grant

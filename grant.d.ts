@@ -375,6 +375,19 @@ export type FastifyMiddleware = (server: any, options: any, next: () => void) =>
  */
 export type CurveballMiddleware = (ctx: any, next?: () => Promise<void>) => Promise<void>
 
+/**
+ * Plain handler
+ */
+export type PlainHandler = (arg: {
+  method: string,
+  params: { override: string, provider: string },
+  query: Record<string,string>,
+  body: any,
+  session: Record<string,string>,
+})  => {
+  location?:string , session: Record<string,string>, state: string,
+ };
+
 // ----------------------------------------------------------------------------
 
 /**
@@ -437,6 +450,11 @@ declare namespace grant {
    */
   function vercel(): (config: GrantConfig | GrantOptions) => GrantHandler & GrantInstance
   function vercel(config: GrantConfig | GrantOptions): GrantHandler & GrantInstance
+
+  /**
+   * Plain Grant handler
+   */
+  function Grant(arg:{ config: GrantConfig | GrantOptions }) : PlainHandler
 }
 
 export default grant
